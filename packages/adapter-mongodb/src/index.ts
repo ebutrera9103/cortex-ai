@@ -1,4 +1,4 @@
-import type { CortexContext, ICortexStorageAdapter } from '@cortex/core';
+import type { CortexContext, ICortexStorageAdapter } from '@cortex-ai/core';
 import type { Collection, Db } from 'mongodb';
 
 interface CortexMongoDocument {

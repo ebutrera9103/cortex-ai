@@ -1,5 +1,5 @@
 {
-  "name": "@cortex/core",
+  "name": "@cortex-ai/core",
   "version": "0.1.0",
   "description": "Core interfaces and types for the Model Context Protocol (cortex) for Node.js.",
   "main": "dist/index.js",

@@ -1,6 +1,6 @@
 import type { Request, Response, Router, NextFunction } from 'express';
 import { Router as createRouter } from 'express';
-import type { ICortexService } from '@cortex/core';
+import type { ICortexService } from '@cortex-ai/core';
 
 export interface CortexMiddlewareConfig {
   apiKeyValidator?: (

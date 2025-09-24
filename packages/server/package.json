@@ -1,5 +1,5 @@
 {
-  "name": "@cortex/server",
+  "name": "@cortex-ai/server",
   "version": "0.1.0",
   "description": "A simple server implementation for cortex.",
   "main": "dist/index.js",
@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@cortex/core": "workspace:*"
+    "@cortex-ai/core": "workspace:*"
   },
   "author": "Futurmille",
   "license": "MIT"

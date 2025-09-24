@@ -1,273 +1,196 @@
-````markdown
-# Cortex AI: The Persistent Memory Toolkit for Node.js
+# Cortex AI: Persistent Memory Toolkit for Node.js AI Apps
 
-A production-ready toolkit for giving your AI applications, agents, and chatbots a simple, secure, and persistent memory.
-
-Cortex AI provides a powerful and intuitive way to manage the context and memory of AI systems. It's built on a pluggable adapter system, allowing you to start with a simple in-memory store and scale to production-grade databases like PostgreSQL and MongoDB without changing your core application logic.
+**Cortex AI** is a toolkit for developers who want to add secure, persistent, and context-aware memory to AI agents, chatbots, or multi-agent systems.  
+It’s database-agnostic, highly extensible, and designed for real-world production needs.
 
 ---
 
-## 📑 Table of Contents
+## 🚀 What Can You Build With Cortex AI?
 
-- [What is Cortex AI?](#what-is-cortex-ai)
-- [Cortex AI vs. The Official MCP SDK](#cortex-ai-vs-the-official-mcp-sdk)
-- [Core Concepts](#core-concepts)
-- [Available Packages](#-available-packages)
-- [🚀 Quick Start: Secure API for Chat History](#-quick-start-secure-api-for-chat-history)
-- [🤖 Advanced Usage: Multi-Agent Collaboration](#-advanced-usage-multi-agent-collaboration)
-- [🚀 Quick Start: Secure API with PostgreSQL](#-quick-start-secure-api-with-postgresql)
-- [🔌 Using a Different Adapter](#-using-a-different-adapter)
-- [🤝 Contributing](#-contributing)
-- [📜 License](#-license)
+- **Persistent chat history** for chatbots and conversational agents
+- **Shared memory** for multi-agent collaboration and asynchronous workflows
+- **Context storage** for custom AI features: user preferences, research artifacts, knowledge graphs
+- **Multi-tenant data partitioning** for SaaS, enterprise, or collaborative apps
+- **Plug-and-play data backends:** Easily switch between Postgres, MongoDB, Redis, or your own custom adapter
 
 ---
 
-## What is Cortex AI?
+## 🧠 Why Use Cortex AI?
 
-Cortex AI is designed with a core philosophy in mind:
-
-- **Focus on Persistence**: The primary goal is to be the best-in-class solution for storing and retrieving AI context data.
-- **Decoupled by Design**: Your application logic should not be tied to your database. Swap out storage backends with a single line of code.
-- **Security First**: Built with multi-tenancy and security as first-class concepts.
+- **Security-first:** Built for multi-user, multi-tenant scenarios
+- **Decoupled by design:** Swap storage layers with a single line of code—your app logic stays clean
+- **Scalable and production-ready:** Focused on reliability, extensibility, and developer happiness
 
 ---
 
-## Cortex AI vs. The Official MCP SDK
-
-This is a crucial distinction. The two projects are designed to solve different problems:
-
-- **Cortex AI (This Library)** is a specialized database toolkit for AI memory.
-  - Its primary job is to securely store and retrieve context data (like chat history or user preferences) so it can be used later.
-  - It is focused on persistence and data management.
-  - Think of it as the **secure bank vault** for an AI's long-term memory.
-
-- **The Official `typescript-sdk`** is a full API framework for real-time AI communication.
-  - Its primary job is to manage the live, back-and-forth conversation between an AI application (the "client") and a set of tools (the "server") according to a strict protocol.
-  - It is focused on live interaction and protocol compliance.
-  - Think of it as a **busy telephone switchboard**.
-
-✅ **Choose Cortex AI** when your main goal is to add a simple, secure, and reliable persistent memory layer to your application.
-
----
-
-## Core Concepts
-
-- **`CortexServer`**: The main class from `@cortex-ai/server`. It orchestrates all operations.
-- **Storage Adapters**: Pluggable backends that connect the `CortexServer` to a database. You can easily create your own.
-- **`tenantId`**: The top-level identifier to ensure data is securely partitioned between different users or customers.
-- **`contextId`**: The identifier for a specific piece of memory within a tenant's partition (e.g., a single chat session).
-
----
-
-## 📦 Available Packages
-
-| Package                          | Description                                                      |
-| -------------------------------- | ---------------------------------------------------------------- |
-| **@cortex-ai/core**              | Defines the core TypeScript interfaces (`ICortexService`, etc.). |
-| **@cortex-ai/server**            | The main `CortexServer` logic.                                   |
-| **@cortex-ai/adapter-in-memory** | A non-persistent adapter for development and testing.            |
-| **@cortex-ai/adapter-postgres**  | A production-ready, persistent storage adapter using PostgreSQL. |
-| **@cortex-ai/adapter-mongodb**   | A production-ready, persistent storage adapter using MongoDB.    |
-| **@cortex-ai/express**           | Express middleware to expose the memory server as a secure API.  |
-
----
-
-## 🚀 Quick Start: Secure API for Chat History
-
-This example shows how to add a secure, persistent memory to a chatbot using Express and PostgreSQL.  
-_(For the full code, see the [Quick Start Guide](#-quick-start-secure-api-with-postgresql))._
-
----
-
-## 🤖 Advanced Usage: Multi-Agent Collaboration
-
-The true power of Cortex AI is unlocked when it's used as a shared memory space, or **"collaboration hub,"** for multiple AI agents working together on a complex task.
-
-**The pattern is simple:**
-
-- `tenantId` = The **Project ID**. This creates a secure, isolated workspace for the task.
-- `contextId` = The **Artifact ID**. This is a specific piece of data an agent produces or consumes.
-
----
-
-### Scenario: An AI Research Team
-
-Imagine a team of specialized bots writing a research report: a **ResearcherBot**, a **SummarizerBot**, and a **WriterBot**. They use Cortex AI to collaborate asynchronously.
-
----
-
-#### 1. The ResearcherBot saves its findings:
+## 🏗️ Quick Example: Save and Retrieve Chat History
 
 ```ts
-const projectId = 'project-market-analysis-q4';
-const rawDataArtifactId = 'raw-articles';
+// Save chat history for a user
+await cortexServer.setMemory('user-123', 'chat-session-abc', { messages: [...] });
 
-const articles = [
-  { source: 'https://techcrunch.com/...', content: '...' },
-  { source: 'https://wsj.com/...', content: '...' },
-];
-
-// The ResearcherBot saves its findings to the shared workspace.
-await cortexServer.setMemory(projectId, rawDataArtifactId, articles);
+// Retrieve chat history later
+const session = await cortexServer.getMemory('user-123', 'chat-session-abc');
 ```
-````
 
 ---
 
-#### 2. The SummarizerBot retrieves the data and adds its work:
+## 🤖 Real-World Scenario: Multi-Agent Collaboration
+
+Imagine a team of specialized bots writing a research report:
+
+- **ResearcherBot** saves findings
+- **SummarizerBot** pulls, summarizes, and updates context
+- **WriterBot** assembles a final report
 
 ```ts
-const projectId = 'project-market-analysis-q4';
-const summaryArtifactId = 'summarized-notes';
+// 1. ResearcherBot saves articles
+await cortexServer.setMemory('project-xyz', 'raw-articles', articles);
 
-// It retrieves the data left by the ResearcherBot.
-const articlesContext = await cortexServer.getMemory(projectId, 'raw-articles');
-
+// 2. SummarizerBot retrieves and summarizes
+const articlesContext = await cortexServer.getMemory('project-xyz', 'raw-articles');
 if (articlesContext) {
-  const summaries = articlesContext.data.map((article) => ({
-    /* ... summarize ... */
-  }));
-
-  // It saves its own work back to a *new* artifact in the same project workspace.
-  await cortexServer.setMemory(projectId, summaryArtifactId, summaries);
+  const summaries = articlesContext.data.map(/* summarize */);
+  await cortexServer.setMemory('project-xyz', 'summarized-notes', summaries);
 }
-```
 
----
-
-#### 3. The WriterBot creates the final report:
-
-```ts
-const projectId = 'project-market-analysis-q4';
-const finalReportArtifactId = 'final-report-draft-1';
-
-// It retrieves the summaries left by the SummarizerBot.
-const summariesContext = await cortexServer.getMemory(
-  projectId,
-  'summarized-notes'
-);
-
+// 3. WriterBot builds the final report
+const summariesContext = await cortexServer.getMemory('project-xyz', 'summarized-notes');
 if (summariesContext) {
-  const finalReport = 'Here is the final report based on the summaries...';
-
-  // It saves the final product to the workspace.
-  await cortexServer.setMemory(projectId, finalReportArtifactId, {
-    report: finalReport,
-  });
+  await cortexServer.setMemory('project-xyz', 'final-report-draft', { report: /* ... */ });
 }
 ```
 
 ---
 
-## 🚀 Quick Start: Secure API with PostgreSQL
+## 🧑‍💼 Example: User Context and Topic Deduplication Across Multiple Bots
 
-This example shows how to add a secure, persistent memory to a chatbot using Express and PostgreSQL.
+Imagine a company with several specialized bots (e.g. BillingBot, SupportBot, FeedbackBot) that interact with users.  
+Cortex AI can track what topics a user has already discussed, allowing bots to respond intelligently and avoid repeating answers.
 
-### 1. Installation
+### Scenario: Tracking User Concerns
 
-```bash
-# Install Cortex AI packages and their dependencies
-npm install express pg dotenv @cortex-ai/server @cortex-ai/adapter-postgres @cortex-ai/express
-```
-
-### 2. Set Up Your Environment
-
-```env
-# .env file
-DATABASE_URL="postgresql://user:password@host:port/database"
-```
-
-### 3. Create Your Server (`server.ts`)
+1. **A user contacts SupportBot about a billing issue.**
+2. **Later, the user contacts BillingBot about the same topic.**
+3. **BillingBot checks Cortex AI for existing concerns and finds the topic already discussed.**
+4. **BillingBot can reference the previous conversation or escalate only if new info is given.**
 
 ```ts
-import 'dotenv/config';
-import express from 'express';
-import { Pool } from 'pg';
-import { CortexServer } from '@cortex-ai/server';
-import { PostgresStorageAdapter } from '@cortex-ai/adapter-postgres';
-import { createCortexMiddleware } from '@cortex-ai/express';
+const userId = 'user-555';
+const topicKey = 'billing-concern-q3-2025';
 
-// --- 1. Connect to your database ---
-const pgPool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+// When a bot receives a new concern:
+const previousConcern = await cortexServer.getMemory(userId, topicKey);
 
-// --- 2. Initialize the Cortex AI Server ---
-const storageAdapter = new PostgresStorageAdapter(pgPool);
-const cortexServer = new CortexServer(storageAdapter);
-
-// Initialize the database table if it doesn't exist
-storageAdapter.init().catch(console.error);
-
-// --- 3. Set up API Key Security (Example) ---
-const apiKeyValidator = async (
-  tenantId: string,
-  apiKey: string
-): Promise<boolean> => {
-  // In a real app, you would look this up in a database.
-  const validKeys: Record<string, string> = { 'customer-123': 'key-abc-789' };
-  return validKeys[tenantId] === apiKey;
-};
-
-// --- 4. Set up the Express App & Middleware ---
-const app = express();
-app.use(express.json());
-app.use('/memory', createCortexMiddleware(cortexServer, { apiKeyValidator }));
-
-// --- 5. Start the server ---
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`✅ Secure Cortex AI server running on http://localhost:${PORT}`);
-});
+if (previousConcern) {
+  // The user already mentioned this topic!
+  // Reference or summarize previous response to avoid redundancy
+  return {
+    message:
+      "We see you've already raised a billing concern recently. Here's what was discussed:",
+    details: previousConcern.data,
+  };
+} else {
+  // Save new concern to shared user context
+  await cortexServer.setMemory(userId, topicKey, { details: userMessage });
+  // Proceed with normal bot workflow
+}
 ```
 
-### 4. Test Your API
+**Benefits:**
 
-```bash
-# Set a conversation history for customer-123 (Success)
-curl -X POST http://localhost:3000/memory/customer-123/chat-session-abc \
-     -H "X-API-KEY: key-abc-789" \
-     -H "Content-Type: application/json" \
-     -d '{ "messages": ["Hello from Postgres!"] }'
-
-# Get the conversation history (Success)
-curl http://localhost:3000/memory/customer-123/chat-session-abc \
-     -H "X-API-KEY: key-abc-789"
-```
+- Prevents duplicate tickets or responses
+- Enables context-aware, collaborative support—each bot knows what others have handled
+- Improves user experience by referencing prior interactions
 
 ---
 
-## 🔌 Using a Different Adapter
+## 🏁 Getting Started
 
-To switch the example above to MongoDB, only a few lines change:
+1. **Install packages:**
+   ```bash
+   npm install express pg dotenv @cortex-ai/server @cortex-ai/adapter-postgres @cortex-ai/express
+   ```
+2. **Configure your environment:**
+   ```env
+   # .env file
+   DATABASE_URL="postgresql://user:password@host:port/database"
+   ```
+3. **Create your server (`server.ts`):**
 
-```bash
-npm install mongodb @cortex-ai/adapter-mongodb
-```
+   ```ts
+   import express from 'express';
+   import { Pool } from 'pg';
+   import { CortexServer } from '@cortex-ai/server';
+   import { PostgresStorageAdapter } from '@cortex-ai/adapter-postgres';
+   import { createCortexMiddleware } from '@cortex-ai/express';
 
-```ts
-import { MongoClient } from 'mongodb';
-import { MongoDbStorageAdapter } from '@cortex-ai/adapter-mongodb';
+   const pgPool = new Pool({ connectionString: process.env.DATABASE_URL });
+   const storageAdapter = new PostgresStorageAdapter(pgPool);
+   const cortexServer = new CortexServer(storageAdapter);
+   storageAdapter.init().catch(console.error);
 
-const mongoClient = new MongoClient(process.env.MONGO_URL as string);
-await mongoClient.connect();
+   const apiKeyValidator = async (tenantId, apiKey) => {
+     // Example: validate API key per tenant
+     return { 'customer-123': 'key-abc-789' }[tenantId] === apiKey;
+   };
 
-const storageAdapter = new MongoDbStorageAdapter(mongoClient.db('my-ai-app'));
-const cortexServer = new CortexServer(storageAdapter);
-```
+   const app = express();
+   app.use(express.json());
+   app.use(
+     '/memory',
+     createCortexMiddleware(cortexServer, { apiKeyValidator })
+   );
+
+   app.listen(3000, () =>
+     console.log('✅ Server running on http://localhost:3000')
+   );
+   ```
 
 ---
 
-## 🤝 Contributing
+## 🔌 Adapters: Examples, Not The Focus
 
-We welcome contributions from the community! Whether it's a bug fix, a new feature, or a new storage adapter, we'd love to see it. Please read our **Contributing Guide** to get started.
+Adapters let you connect Cortex AI to any database.  
+**Included examples:**
+
+- Redis
+- MongoDB
+- PostgreSQL
+- In-memory (for development/testing)
+
+> These are educational starting points—customize for production!
+
+**Write your own adapter** for any cloud or enterprise backend in a few lines of code.
 
 ---
 
-## 📜 License
+## 🧩 Core Concepts
 
-This project is licensed under the **MIT License**. See the [LICENSE](./LICENSE) file for details.
+- **CortexServer:** Main orchestrator for context/memory operations
+- **Storage Adapters:** Plug in any backend by implementing the adapter interface
+- **tenantId:** Secure partition per user/customer/project
+- **contextId:** Unique key for each memory artifact (e.g. a chat session, document, or agent output)
 
-```
+---
 
-```
+## 📦 Packages
+
+| Package                          | Description                               |
+| -------------------------------- | ----------------------------------------- |
+| **@cortex-ai/core**              | Core TypeScript interfaces                |
+| **@cortex-ai/server**            | Main server logic                         |
+| **@cortex-ai/adapter-in-memory** | Example non-persistent adapter            |
+| **@cortex-ai/adapter-postgres**  | Example persistent adapter for PostgreSQL |
+| **@cortex-ai/adapter-mongodb**   | Example persistent adapter for MongoDB    |
+| **@cortex-ai/express**           | Express middleware for secure API         |
+
+---
+
+## 🛠️ Extending Cortex AI
+
+- **Adapters:** Implement your own for any backend
+- **Security:** Add custom API key or auth logic
+- **Multi-tenancy:** Partition data simply and securely
+
+---

@@ -1,5 +1,5 @@
 {
-  "name": "@cortex/express",
+  "name": "@cortex-ai/express",
   "version": "0.1.0",
   "description": "Express middleware for the cortex server.",
   "main": "dist/index.js",
@@ -8,8 +8,8 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@cortex/core": "workspace:*",
-    "@cortex/server": "workspace:*"
+    "@cortex-ai/core": "workspace:*",
+    "@cortex-ai/server": "workspace:*"
   },
   "peerDependencies": {
     "express": "^4.0.0"

@@ -1,5 +1,5 @@
 {
-  "name": "@cortex/adapter-postgres",
+  "name": "@cortex-ai/adapter-postgres",
   "version": "0.1.0",
   "description": "PostgreSQL storage adapter for cortex.",
   "main": "dist/index.js",
@@ -8,7 +8,7 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@cortex/core": "workspace:*"
+    "@cortex-ai/core": "workspace:*"
   },
   "peerDependencies": {
     "pg": "^8.0.0"

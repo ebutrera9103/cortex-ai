@@ -1,12 +1,20 @@
-import { CortexContext, ICortexStorageAdapter } from '@cortex/core';
+import { CortexContext, ICortexStorageAdapter } from '@cortex-ai/core';
 
 export class InMemoryStorageAdapter implements ICortexStorageAdapter {
   private readonly storage = new Map<string, Map<string, CortexContext<any>>>();
 
-  public async connect(): Promise<void> { return Promise.resolve(); }
-  public async disconnect(): Promise<void> { this.storage.clear(); return Promise.resolve(); }
+  public async connect(): Promise<void> {
+    return Promise.resolve();
+  }
+  public async disconnect(): Promise<void> {
+    this.storage.clear();
+    return Promise.resolve();
+  }
 
-  public async get<T>(tenantId: string, contextId: string): Promise<CortexContext<T> | null> {
+  public async get<T>(
+    tenantId: string,
+    contextId: string
+  ): Promise<CortexContext<T> | null> {
     const context = this.storage.get(tenantId)?.get(contextId);
     return context || null;
   }

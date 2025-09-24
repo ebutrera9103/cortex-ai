@@ -1,5 +1,5 @@
 {
-  "name": "@cortex/adapter-mongodb",
+  "name": "@cortex-ai/adapter-mongodb",
   "version": "0.1.0",
   "description": "MongoDB storage adapter for cortex.",
   "main": "dist/index.js",
@@ -8,7 +8,7 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@cortex/core": "workspace:*"
+    "@cortex-ai/core": "workspace:*"
   },
   "peerDependencies": {
     "mongodb": "^6.0.0"

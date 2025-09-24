@@ -1,8 +1,8 @@
 import express from 'express';
 import Redis from 'ioredis';
-import { CortexServer } from '@cortex/server';
-import { RedisStorageAdapter } from '@cortex/adapter-redis';
-import { createCortexMiddleware } from '@cortex/express';
+import { CortexServer } from '@cortex-ai/server';
+import { RedisStorageAdapter } from '@cortex-ai/adapter-redis';
+import { createCortexMiddleware } from '@cortex-ai/express';
 
 const validApiKeys: Record<string, string> = {
   'tenant-123': 'api-key-abc',

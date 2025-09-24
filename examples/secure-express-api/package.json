@@ -8,9 +8,9 @@
     "dev": "nodemon"
   },
   "dependencies": {
-    "@cortex/adapter-redis": "workspace:*",
-    "@cortex/express": "workspace:*",
-    "@cortex/server": "workspace:*",
+    "@cortex-ai/adapter-redis": "workspace:*",
+    "@cortex-ai/express": "workspace:*",
+    "@cortex-ai/server": "workspace:*",
     "express": "^4.19.2",
     "ioredis": "^5.4.1"
   },

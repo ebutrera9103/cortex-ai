@@ -12,7 +12,7 @@ importers:
         specifier: ^4.17.21
         version: 4.17.23
       '@types/jest':
-        specifier: ^29.5.12
+        specifier: ^29.5.14
         version: 29.5.14
       '@types/node':
         specifier: ^20.14.2
@@ -48,7 +48,7 @@ importers:
         specifier: ^7.0.0
         version: 7.1.4
       ts-jest:
-        specifier: ^29.1.4
+        specifier: ^29.4.4
         version: 29.4.4(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@20.19.17))(typescript@5.9.2)
       typescript:
         specifier: ^5.9.2
@@ -56,13 +56,13 @@ importers:
 
   examples/secure-express-api:
     dependencies:
-      '@cortex/adapter-redis':
+      '@cortex-ai/adapter-redis':
         specifier: workspace:*
         version: link:../../packages/adapter-redis
-      '@cortex/express':
+      '@cortex-ai/express':
         specifier: workspace:*
         version: link:../../packages/express
-      '@cortex/server':
+      '@cortex-ai/server':
         specifier: workspace:*
         version: link:../../packages/server
       express:
@@ -87,13 +87,13 @@ importers:
 
   packages/adapter-in-memory:
     dependencies:
-      '@cortex/core':
+      '@cortex-ai/core':
         specifier: workspace:*
         version: link:../core
 
   packages/adapter-mongodb:
     dependencies:
-      '@cortex/core':
+      '@cortex-ai/core':
         specifier: workspace:*
         version: link:../core
     devDependencies:
@@ -103,7 +103,7 @@ importers:
 
   packages/adapter-postgres:
     dependencies:
-      '@cortex/core':
+      '@cortex-ai/core':
         specifier: workspace:*
         version: link:../core
     devDependencies:
@@ -116,7 +116,7 @@ importers:
 
   packages/adapter-redis:
     dependencies:
-      '@cortex/core':
+      '@cortex-ai/core':
         specifier: workspace:*
         version: link:../core
       ioredis:
@@ -127,10 +127,10 @@ importers:
 
   packages/express:
     dependencies:
-      '@cortex/core':
+      '@cortex-ai/core':
         specifier: workspace:*
         version: link:../core
-      '@cortex/server':
+      '@cortex-ai/server':
         specifier: workspace:*
         version: link:../server
     devDependencies:
@@ -143,7 +143,7 @@ importers:
 
   packages/server:
     dependencies:
-      '@cortex/core':
+      '@cortex-ai/core':
         specifier: workspace:*
         version: link:../core
 

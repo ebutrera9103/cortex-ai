@@ -1,4 +1,4 @@
-import type { CortexContext, ICortexStorageAdapter } from '@cortex/core';
+import type { CortexContext, ICortexStorageAdapter } from '@cortex-ai/core';
 import type { Pool } from 'pg';
 
 export class PostgresStorageAdapter implements ICortexStorageAdapter {

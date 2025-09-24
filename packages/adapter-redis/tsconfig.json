@@ -6,6 +6,6 @@
     "declaration": true,
     "composite": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/__tests__"],
   "references": [{ "path": "../core" }]
 }

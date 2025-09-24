@@ -2,7 +2,7 @@ import {
   CortexContext,
   ICortexStorageAdapter,
   StorageAdapterError,
-} from '@cortex/core';
+} from '@cortex-ai/core';
 import type { Redis } from 'ioredis';
 
 export class RedisStorageAdapter implements ICortexStorageAdapter {
