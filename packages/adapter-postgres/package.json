@@ -1,6 +1,6 @@
 {
   "name": "@cortex-ai/adapter-postgres",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "PostgreSQL storage adapter for cortex.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -17,7 +17,7 @@
     "@types/pg": "^8.11.6",
     "pg": "^8.12.0"
   },
-  "author": "Your Name",
+  "author": "Futurmille",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
