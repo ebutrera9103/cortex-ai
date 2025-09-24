@@ -1,6 +1,6 @@
 {
   "name": "@cortex-ai/adapter-mongodb",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "MongoDB storage adapter for cortex.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -16,7 +16,7 @@
   "devDependencies": {
     "mongodb": "^6.7.0"
   },
-  "author": "Your Name",
+  "author": "Futurmille",
   "license": "MIT",
   "publishConfig": {
     "access": "public"

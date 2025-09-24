@@ -1,6 +1,6 @@
 {
   "name": "@cortex-ai/core",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Core interfaces and types for the Model Context Protocol (cortex) for Node.js.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -17,7 +17,7 @@
     "memory",
     "multi-agent"
   ],
-  "author": "Your Name",
+  "author": "Futurmille",
   "license": "MIT",
   "publishConfig": {
     "access": "public"

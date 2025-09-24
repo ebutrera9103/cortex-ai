@@ -1,7 +1,7 @@
 {
   "name": "cortex-example-secure-api",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js",
