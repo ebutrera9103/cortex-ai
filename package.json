@@ -1,6 +1,6 @@
 {
   "name": "cortex-ai-monorepo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "The Persistent Memory Toolkit for Node.js AI Applications.",
   "scripts": {
