@@ -1,0 +1,19 @@
+{
+  "name": "@cortex/adapter-redis",
+  "version": "0.1.0",
+  "description": "Redis storage adapter for cortex.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@cortex/core": "workspace:*",
+    "ioredis": "^5.4.1"
+  },
+  "author": "Futurmille",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

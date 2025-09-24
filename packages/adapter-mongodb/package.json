@@ -1,0 +1,24 @@
+{
+  "name": "@cortex/adapter-mongodb",
+  "version": "0.1.0",
+  "description": "MongoDB storage adapter for cortex.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@cortex/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "mongodb": "^6.0.0"
+  },
+  "devDependencies": {
+    "mongodb": "^6.7.0"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

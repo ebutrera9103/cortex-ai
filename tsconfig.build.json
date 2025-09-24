@@ -1,0 +1,12 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/core" },
+    { "path": "./packages/server" },
+    { "path": "./packages/adapter-in-memory" },
+    { "path": "./packages/adapter-redis" },
+    { "path": "./packages/adapter-postgres" },
+    { "path": "./packages/adapter-mongodb" },
+    { "path": "./examples/secure-express-api" }
+  ]
+}

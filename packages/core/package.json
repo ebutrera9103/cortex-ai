@@ -1,0 +1,25 @@
+{
+  "name": "@cortex/core",
+  "version": "0.1.0",
+  "description": "Core interfaces and types for the Model Context Protocol (cortex) for Node.js.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "cortex",
+    "ai",
+    "context",
+    "memory",
+    "multi-agent"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

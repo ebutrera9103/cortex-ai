@@ -1,0 +1,44 @@
+--- Dependencies ---
+**/node_modules
+
+--- Build Artifacts ---
+**/dist
+
+Ignore TypeScript build info files, which are caches.
+**/tsconfig.tsbuildinfo
+
+--- Logs ---
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+--- Environment Variables ---
+.env
+.env.local
+.env.*.local
+
+--- Operating System Files ---
+.DS_Store
+.AppleDouble
+.LSOverride
+
+*.stackdump
+
+--- IDE / Editor Directories ---
+.vscode/
+.idea/
+*.suo
+.ntvs
+*.njsproj
+*.sln
+*.sw?
+
+--- Test Coverage ---
+/coverage
+
+--- Temporary Files ---
+*.tmp
+*.bak
+*.swp
